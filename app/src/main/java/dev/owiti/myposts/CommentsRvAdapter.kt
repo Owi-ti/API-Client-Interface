@@ -8,8 +8,7 @@ import dev.owiti.myposts.databinding.CommentsListItemBinding
 
 
 
-
-class CommentsRvAdapter(var commentsList: List<Comment>):
+class CommentsRvAdapter(var commentList: List<Comment>):
     RecyclerView.Adapter<CommentViewHolder> ()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
@@ -19,18 +18,21 @@ class CommentsRvAdapter(var commentsList: List<Comment>):
     }
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
-        var currentComment = commentsList.get(position)
-        holder.binding.tvPostId.text = currentComment.postId.toString()
-        holder.binding.tvIds.text = currentComment.Id.toString()
-        holder.binding.tvName.text = currentComment.name
-        holder.binding.tvEmail.text = currentComment.email
-        holder.binding.tvBody2.text = currentComment.body
+        var currentComment = commentList.get(position)
+        with(holder.binding){
+            tvPostId.text = currentComment.postId.toString()
+            tvIds.text = currentComment.Id
+            tvName.text = currentComment.name
+            tvEmail.text = currentComment.email
+            tvBody2.text = currentComment.body
 
+
+        }
 
     }
 
     override fun getItemCount(): Int {
-        return commentsList.size
+        return commentList.size
 
     }
 
